@@ -1,4 +1,5 @@
 ## Use tensorflow lite on atlas
+only use atlas cpu
 * parse RSTP stream via opencv
 * use tensorflow inference
 * pub message via MQTT
