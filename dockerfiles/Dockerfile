@@ -28,12 +28,12 @@ RUN git init && \
         git config core.sparsecheckout true && \
         echo "resarch/object_detection" >> .git/info/sparse-checkout && \
         git pull --depth 1 origin master && \
-        rm -rf .git resarch/object_detection/test*
+        rm -rf .git research/object_detection/test*
 
-RUN protoc /models/resarch/object_detectionobject_detection/protos/*.proto --python_out=.
+WORKDIR /models/research/object_detection
+RUN protoc /models/research/object_detectionobject_detection/protos/*.proto --python_out=.
+COPY . /models/research/object_detection
 
-COPY . /models/resarch/object_detection
-WORKDIR /models/resarch/object_detection
 
-ENTRYPOINT ["/usr/local/bin/python", "/models/resarch/object_detection/od.py"]
+ENTRYPOINT ["/usr/local/bin/python", "od_atlas.py"]
 
